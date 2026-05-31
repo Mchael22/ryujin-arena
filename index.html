@@ -15,96 +15,126 @@
             background: #111014; color: #d4af37; z-index: 99999;
             flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Cinzel', serif;
         }
-        #portrait-warning h1 { margin-bottom: 10px; }
-        #portrait-warning p { color: #f4ebd8; font-family: sans-serif; }
+        #portrait-warning h1 { margin-bottom: 10px; font-size: 22px; }
+        #portrait-warning p { color: #f4ebd8; font-size: 14px; margin: 0 15px; }
         @media screen and (orientation: portrait) {
             #portrait-warning { display: flex; }
             #login-screen, #gameCanvas, #ingame-coins, #scoreboard { display: none !important; }
         }
         
+        /* DESAIN LOGIN UTK LAYAR HP LANDSCAPE (RESPONSIF DAN TIDAK TERPOTONG) */
         #login-screen {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: rgba(22, 21, 26, 0.85); backdrop-filter: blur(10px);
-            padding: 25px; border-radius: 12px; text-align: center; 
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7); width: 90%; max-width: 400px; box-sizing: border-box;
+            background: rgba(22, 21, 26, 0.9); backdrop-filter: blur(10px);
+            padding: 12px 20px; border-radius: 12px; text-align: center; 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7); 
+            width: 92%; max-width: 580px; max-height: 94vh; box-sizing: border-box;
             border: 2px solid #8b0000; color: #f4ebd8; z-index: 20;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
         
-        #login-screen h2 { font-family: 'Cinzel', serif; margin-top: 0; color: #d4af37; font-size: 24px; margin-bottom: 5px; }
-        #coin-balance { font-size: 16px; font-weight: bold; color: #d4af37; margin-bottom: 15px; }
+        .header-area { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px solid rgba(139,0,0,0.4); padding-bottom: 4px; }
+        #login-screen h2 { font-family: 'Cinzel', serif; margin: 0; color: #d4af37; font-size: 18px; }
+        #coin-balance { font-size: 13px; font-weight: bold; color: #d4af37; margin: 0; }
         
+        /* Layout Grid Utama Dibagi 2 Kolom saat Landscape Biar Muat Banyak */
+        .main-form-grid {
+            display: grid; grid-template-columns: 1fr 1.2fr; gap: 15px; text-align: left; margin-bottom: 10px;
+        }
+
+        .left-column { display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+
         #login-screen input[type="text"] {
-            display: block; width: 100%; margin-bottom: 10px; padding: 10px; box-sizing: border-box; font-size: 15px; 
+            width: 100%; padding: 8px; box-sizing: border-box; font-size: 13px; 
             border-radius: 4px; border: 1px solid rgba(212, 175, 55, 0.4); background: rgba(0, 0, 0, 0.5); 
             color: #f4ebd8; outline: none; text-align: center; font-family: 'Cinzel', serif;
         }
         
-        .shop-title { font-size: 14px; color: #aaa; text-align: left; margin-bottom: 8px; font-family: 'Cinzel', serif; }
+        .shop-title { font-size: 12px; color: #aaa; margin-bottom: 5px; font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;}
+        
+        /* Perbaikan Toko Skin: Scrollbar Horisontal / Grid Pendek Biar Ga Makan Tempat */
         .skin-container { 
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; 
-            max-height: 140px; overflow-y: auto; padding-right: 5px; /* Bisa discroll jika skin banyak */
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; 
+            max-height: 120px; overflow-y: auto; padding-right: 3px;
         }
-        .skin-container::-webkit-scrollbar { width: 5px; }
+        .skin-container::-webkit-scrollbar { width: 4px; }
         .skin-container::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 5px; }
 
-        .skin-item { background: rgba(0,0,0,0.4); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px; padding: 8px 5px; cursor: pointer; transition: 0.2s; font-size: 11px; }
-        .skin-item.locked { opacity: 0.5; filter: grayscale(100%); }
-        .skin-item.selected { border-color: #d4af37; background: rgba(212, 175, 55, 0.15); box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
-        .skin-icon { width: 25px; height: 25px; border-radius: 50%; margin: 0 auto 5px auto; }
-        .skin-price { color: #d4af37; font-weight: bold; font-size: 10px; margin-top: 5px; }
+        .skin-item { background: rgba(0,0,0,0.5); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px; padding: 6px 4px; cursor: pointer; transition: 0.2s; font-size: 11px; text-align: center; }
+        .skin-item.locked { opacity: 0.4; filter: grayscale(80%); }
+        .skin-item.selected { border-color: #d4af37; background: rgba(212, 175, 55, 0.15); box-shadow: 0 0 8px rgba(212, 175, 55, 0.3); }
+        .skin-icon { width: 20px; height: 20px; border-radius: 50%; margin: 0 auto 3px auto; }
+        .skin-price { color: #d4af37; font-weight: bold; font-size: 10px; margin-top: 2px; }
 
-        .color-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); }
-        .color-wrap { display: flex; align-items: center; gap: 10px; }
-        #color-ok-btn { background: #d4af37; color: #111; border: none; padding: 6px 12px; font-size: 12px; font-weight: bold; border-radius: 4px; cursor: pointer; font-family: 'Cinzel', serif; transition: 0.2s; }
+        .color-row { display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); }
+        .color-wrap { display: flex; align-items: center; gap: 8px; }
+        #color-ok-btn { background: #d4af37; color: #111; border: none; padding: 5px 10px; font-size: 11px; font-weight: bold; border-radius: 4px; cursor: pointer; font-family: 'Cinzel', serif; }
         #color-ok-btn.saved { background: #00ffcc; color: #000; }
         
         #login-screen button#start-btn { 
             background: #8b0000; color: #f4ebd8; font-weight: bold; border: none; cursor: pointer; 
-            padding: 12px; width: 100%; font-size: 16px; border-radius: 4px; 
+            padding: 10px; width: 100%; font-size: 14px; border-radius: 4px; 
             text-transform: uppercase; letter-spacing: 2px; transition: 0.2s; font-family: 'Cinzel', serif;
+            margin-top: 4px;
         }
         #login-screen button#start-btn:hover { background: #a50000; }
         
         #gameCanvas { display: none; background: #111014; }
         
         #scoreboard {
-            position: absolute; top: 15px; right: 15px; color: #f4ebd8; 
-            background: rgba(22, 21, 26, 0.7); padding: 15px; border-radius: 8px; display: none; 
-            font-size: 13px; min-width: 170px; border: 1px solid #8b0000; z-index: 10; pointer-events: none;
+            position: absolute; top: 10px; right: 10px; color: #f4ebd8; 
+            background: rgba(22, 21, 26, 0.7); padding: 10px; border-radius: 8px; display: none; 
+            font-size: 11px; min-width: 140px; border: 1px solid #8b0000; z-index: 10; pointer-events: none;
         }
-        #scoreboard h3 { margin: 0 0 10px 0; color: #d4af37; text-transform: uppercase; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 6px; font-family: 'Cinzel', serif;}
+        #scoreboard h3 { margin: 0 0 5px 0; color: #d4af37; text-transform: uppercase; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 4px; font-family: 'Cinzel', serif;}
         
-        #ingame-coins { position: absolute; top: 15px; left: 15px; color: #d4af37; font-weight: bold; font-size: 16px; display: none; background: rgba(0,0,0,0.5); padding: 8px 15px; border-radius: 20px; border: 1px solid #d4af37; z-index: 10; pointer-events: none;}
+        #ingame-coins { position: absolute; top: 10px; left: 10px; color: #d4af37; font-weight: bold; font-size: 13px; display: none; background: rgba(0,0,0,0.5); padding: 6px 12px; border-radius: 20px; border: 1px solid #d4af37; z-index: 10; pointer-events: none;}
+
+        /* Media Query Khusus Layar HP Sangat Pendek */
+        @media screen and (max-height: 400px) {
+            #login-screen { padding: 8px 15px; }
+            .skin-container { max-height: 85px; }
+            .main-form-grid { gap: 10px; }
+        }
     </style>
 </head>
 <body>
 
     <div id="portrait-warning">
-        <h1>📱 Putar Layar HP Anda</h1>
-        <p>Game ini hanya dapat dimainkan dalam mode Landscape.</p>
+        <h1>📱 PUTAR LAYAR HP ANDA</h1>
+        <p>Game ini dioptimalkan khusus untuk mode Landscape (Mendatar).</p>
     </div>
 
     <div id="login-screen">
-        <h2>🐍 RYUJIN ARENA</h2>
-        <div id="coin-balance">Ryō (Koin): <span id="my-coins">0</span></div>
+        <div class="header-area">
+            <h2>🐍 RYUJIN ARENA</h2>
+            <div id="coin-balance">Ryō: <span id="my-coins">0</span></div>
+        </div>
         
-        <input type="text" id="username" placeholder="Nama Samurai..." maxlength="12" required>
-        
-        <div class="shop-title">Koleksi Skin:</div>
-        <div class="skin-container" id="skin-shop"></div>
+        <div class="main-form-grid">
+            <div class="left-column">
+                <div class="shop-title">Identitas:</div>
+                <input type="text" id="username" placeholder="Nama Samurai..." maxlength="12" required>
+                
+                <div class="color-row">
+                    <span style="font-size:11px; color:#bbb; font-family:'Cinzel', serif;">Warna Aura</span>
+                    <div class="color-wrap">
+                        <input type="color" id="color" value="#00ffcc" style="background:none; border:none; cursor:pointer; width:28px; height:28px; padding:0;">
+                        <button id="color-ok-btn">SAVE</button>
+                    </div>
+                </div>
+            </div>
 
-        <div class="color-row">
-            <label for="color" style="font-size:13px; color:#bbb; font-family:'Cinzel', serif;">Warna Naga</label>
-            <div class="color-wrap">
-                <input type="color" id="color" value="#00ffcc" style="background:none; border:none; cursor:pointer; width:35px; height:35px; padding:0;">
-                <button id="color-ok-btn">PILIH</button>
+            <div>
+                <div class="shop-title">Koleksi Skin:</div>
+                <div class="skin-container" id="skin-shop"></div>
             </div>
         </div>
 
         <button id="start-btn">Masuk Arena</button>
     </div>
 
-    <div id="ingame-coins">🪙 Koin Tempur: <span id="current-match-coins">0</span></div>
+    <div id="ingame-coins">🪙 Ryō Tempur: <span id="current-match-coins">0</span></div>
 
     <div id="scoreboard">
         <h3>Prajurit Terbaik</h3>
@@ -115,7 +145,8 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
+        // JIKA MENYALAKAN DI REPLIT, AUTOMATIS BERADAPTASI DENGAN ALAMAT URL NYA
+        const socket = io(); 
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         let myId = null, roomSize = 5000; 
@@ -124,7 +155,7 @@
         let myAngle = 0, myBoosting = false, isTouchingJoystick = false;
         let touchStart = {x:0, y:0}, touchCurrent = {x:0, y:0};
 
-        // SISTEM AKUN PERSISTENT (Mengambil data tersimpan)
+        // SISTEM AKUN PERSISTENT (Mengambil data tersimpan otomatis di browser)
         let myCoins = parseInt(localStorage.getItem('snakeCoins')) || 0;
         let unlockedSkins = JSON.parse(localStorage.getItem('snakeSkins')) || ['default'];
         let selectedSkin = localStorage.getItem('snakeSelectedSkin') || 'default';
@@ -152,7 +183,7 @@
                 const isSelected = selectedSkin === skin.id;
                 const div = document.createElement('div');
                 div.className = `skin-item ${isSelected ? 'selected' : ''} ${!isUnlocked ? 'locked' : ''}`;
-                div.innerHTML = `<div class="skin-icon" style="background: linear-gradient(45deg, ${skin.gradient[0]}, ${skin.gradient[1]});"></div><div>${skin.name}</div>${!isUnlocked ? `<div class="skin-price">🪙 ${skin.price}</div>` : `<div class="skin-price" style="color:#d4af37">${isSelected ? 'Dipakai' : 'Milikmu'}</div>`}`;
+                div.innerHTML = `<div class="skin-icon" style="background: linear-gradient(45deg, ${skin.gradient[0]}, ${skin.gradient[1]});"></div><div>${skin.name}</div>${!isUnlocked ? `<div class="skin-price">🪙 ${skin.price}</div>` : `<div class="skin-price" style="color:#00ffcc; font-size:9px;">${isSelected ? 'Dipakai' : 'Miliki'}</div>`}`;
                 div.onclick = () => {
                     if (isUnlocked) { selectedSkin = skin.id; localStorage.setItem('snakeSelectedSkin', selectedSkin); renderShop(); }
                     else if (myCoins >= skin.price && confirm(`Beli skin ${skin.name} seharga ${skin.price} koin?`)) {
@@ -169,9 +200,9 @@
         const colorBtn = document.getElementById('color-ok-btn');
         colorBtn.addEventListener('click', () => {
             confirmedColor = document.getElementById('color').value;
-            localStorage.setItem('snakeColor', confirmedColor); // Simpan otomatis
-            colorBtn.innerText = "TERSAVE!"; colorBtn.classList.add('saved');
-            setTimeout(() => { colorBtn.innerText = "PILIH"; colorBtn.classList.remove('saved'); }, 1500);
+            localStorage.setItem('snakeColor', confirmedColor);
+            colorBtn.innerText = "SAVED"; colorBtn.classList.add('saved');
+            setTimeout(() => { colorBtn.innerText = "SAVE"; colorBtn.classList.remove('saved'); }, 1200);
         });
 
         window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
@@ -181,7 +212,6 @@
             const name = document.getElementById('username').value.trim() || "Ronin";
             confirmedColor = document.getElementById('color').value; 
             
-            // Simpan Profil Pemain di Browser
             localStorage.setItem('snakeUsername', name);
             localStorage.setItem('snakeColor', confirmedColor);
 
@@ -205,7 +235,7 @@
             location.reload();
         });
 
-        // Kontrol Mobile yang Dioptimalkan (Batas Kiri Tegas untuk Joystick, Kanan Tegas untuk Boost)
+        // Kontrol Mobile Handphone Akurat
         window.addEventListener('mousemove', (e) => { if (!myId || isTouchingJoystick) return; myAngle = Math.atan2(e.clientY - canvas.height/2, e.clientX - canvas.width/2); socket.emit('update-input', { angle: myAngle, isBoosting: myBoosting }); });
         window.addEventListener('mousedown', () => { if(myId){ myBoosting = true; socket.emit('update-input', { angle: myAngle, isBoosting: myBoosting });} });
         window.addEventListener('mouseup', () => { if(myId){ myBoosting = false; socket.emit('update-input', { angle: myAngle, isBoosting: myBoosting });} });
@@ -279,41 +309,28 @@
                 camY -= me.segments[0].y;
             }
 
-            // ANTI-LAG: CAMERA CULLING BOUNDS
             let viewLeft = -camX - 50; let viewRight = -camX + canvas.width + 50;
             let viewTop = -camY - 50; let viewBottom = -camY + canvas.height + 50;
 
             ctx.fillStyle = "#111014"; ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Grid
-            ctx.strokeStyle = 'rgba(212, 175, 55, 0.1)'; ctx.lineWidth = 2;
             let gridSize = 150;
             for (let x = Math.floor(-camX/gridSize)*gridSize; x < canvas.width-camX+gridSize; x+=gridSize) if(x>=0 && x<=roomSize) { ctx.beginPath(); ctx.moveTo(x+camX, Math.max(0,camY)); ctx.lineTo(x+camX, Math.min(roomSize, roomSize+camY)); ctx.stroke(); }
             for (let y = Math.floor(-camY/gridSize)*gridSize; y < canvas.height-camY+gridSize; y+=gridSize) if(y>=0 && y<=roomSize) { ctx.beginPath(); ctx.moveTo(Math.max(0,camX), y+camY); ctx.lineTo(Math.min(roomSize, roomSize+camX), y+camY); ctx.stroke(); }
 
             ctx.strokeStyle = '#8b0000'; ctx.lineWidth = 15; ctx.strokeRect(camX, camY, roomSize, roomSize);
 
-            // Render Makanan (Dioptimalkan dengan Culling)
             (currentGameState.foods || []).forEach(f => {
-                if(f.x < viewLeft || f.x > viewRight || f.y < viewTop || f.y > viewBottom) return; // Skip gambar jika di luar layar
-                
+                if(f.x < viewLeft || f.x > viewRight || f.y < viewTop || f.y > viewBottom) return; 
                 let size = f.isBig ? 16 + Math.sin(timePhase*2)*4 : 6; 
                 ctx.fillStyle = f.isBig ? '#ff3366' : '#d4af37';
                 ctx.beginPath(); ctx.arc(f.x + camX, f.y + camY, size, 0, Math.PI * 2); ctx.fill();
-                if(f.isBig) {
-                    ctx.strokeStyle = 'rgba(255, 51, 102, 0.4)'; ctx.lineWidth = 4;
-                    ctx.beginPath(); ctx.arc(f.x + camX, f.y + camY, size + 8, 0, Math.PI * 2); ctx.stroke();
-                }
             });
 
-            // Render Koin (Dioptimalkan dengan Culling)
             (currentGameState.mapCoins || []).forEach(c => {
                 if(c.x < viewLeft || c.x > viewRight || c.y < viewTop || c.y > viewBottom) return; 
-                
                 ctx.fillStyle = '#ffd700'; ctx.beginPath(); ctx.arc(c.x + camX, c.y + camY, 10, 0, Math.PI * 2); ctx.fill();
                 ctx.fillStyle = '#111014'; ctx.fillRect(c.x + camX - 4, c.y + camY - 4, 8, 8);
-                ctx.strokeStyle = 'rgba(255, 215, 0, 0.5)'; ctx.lineWidth = 2;
-                ctx.beginPath(); ctx.arc(c.x + camX, c.y + camY + Math.sin(timePhase + c.id)*5, 14, 0, Math.PI * 2); ctx.stroke();
             });
 
             let boardHTML = '';
@@ -322,41 +339,20 @@
             sortedPlayers.forEach((p, index) => {
                 let isPlayerMe = p.id === socket.id;
                 let colorTag = isPlayerMe ? '#00ffcc' : (p.isBot ? '#ff7777' : '#fff');
+                if(index < 5) boardHTML += `<p style="margin:4px 0; color:${colorTag}">#${index+1} <b>${p.name}</b>: ${p.score}</p>`;
                 
-                if(index < 8) boardHTML += `<p style="margin:6px 0; color:${colorTag}">${index+1}. <b>${p.name}</b>: ${p.score}</p>`;
                 if (!p.segments || p.segments.length === 0) return;
-                
-                // Culling Cek: Jika kepala ular sangat jauh dari layar, tidak usah render seluruh badannya
-                if (p.segments[0].x < viewLeft - 500 || p.segments[0].x > viewRight + 500 || p.segments[0].y < viewTop - 500 || p.segments[0].y > viewBottom + 500) return;
+                if (p.segments[0].x < viewLeft - 300 || p.segments[0].x > viewRight + 300 || p.segments[0].y < viewTop - 300 || p.segments[0].y > viewBottom + 300) return;
 
                 let baseSize = 12 + Math.min(p.score / 60, 45); 
-                let wingCount = Math.floor(p.score / 1000);
 
                 for (let i = p.segments.length - 1; i >= 0; i--) {
                     let seg = p.segments[i];
                     if(!seg) continue;
-                    // Culling per segmen (anti-lag super)
-                    if(seg.x < viewLeft - 100 || seg.x > viewRight + 100 || seg.y < viewTop - 100 || seg.y > viewBottom + 100) continue; 
+                    if(seg.x < viewLeft - 50 || seg.x > viewRight + 50 || seg.y < viewTop - 50 || seg.y > viewBottom + 50) continue; 
 
                     let cSize = baseSize * (1 - (i / p.segments.length) * 0.25);
                     
-                    if (wingCount > 0) {
-                        for (let w = 1; w <= Math.min(wingCount, 4); w++) { 
-                            let targetSeg = w * 5; 
-                            if (i === targetSeg && p.segments.length > targetSeg) {
-                                let wingSize = cSize * 2.5; 
-                                let wingFlap = Math.sin(timePhase * (p.isBoosting ? 3 : 1.5)) * 0.6; 
-                                
-                                ctx.save();
-                                ctx.translate(seg.x + camX, seg.y + camY); ctx.rotate(p.angle);
-                                ctx.fillStyle = p.skin === 'gold' ? 'rgba(212, 175, 55, 0.7)' : (p.skin==='fire' ? 'rgba(255, 69, 0, 0.7)' : 'rgba(255, 255, 255, 0.6)');
-                                ctx.beginPath(); ctx.ellipse(-cSize, -cSize - wingSize/2, wingSize, wingSize/2, wingFlap, 0, Math.PI*2); ctx.fill();
-                                ctx.beginPath(); ctx.ellipse(-cSize, cSize + wingSize/2, wingSize, wingSize/2, -wingFlap, 0, Math.PI*2); ctx.fill();
-                                ctx.restore();
-                            }
-                        }
-                    }
-
                     if (p.skin === 'zebra') ctx.fillStyle = i % 2 === 0 ? p.color : '#222';
                     else if (p.skin === 'rainbow') ctx.fillStyle = i % 2 === 0 ? '#ffb7c5' : '#ff007f'; 
                     else if (p.skin === 'gold') ctx.fillStyle = i % 2 === 0 ? '#d4af37' : '#ffea00';
@@ -367,44 +363,26 @@
 
                     ctx.beginPath(); ctx.arc(seg.x + camX, seg.y + camY, cSize, 0, Math.PI * 2); ctx.fill();
 
-                    if(i % 2 === 0) {
-                        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-                        ctx.beginPath(); ctx.arc(seg.x + camX - cSize*0.2, seg.y + camY - cSize*0.2, cSize * 0.4, 0, Math.PI * 2); ctx.fill();
-                    }
-
                     if (i === 0) { 
                         ctx.fillStyle = '#fff';
                         let oX = Math.cos(p.angle + 1)*cSize*0.6, oY = Math.sin(p.angle + 1)*cSize*0.6;
                         let oX2 = Math.cos(p.angle - 1)*cSize*0.6, oY2 = Math.sin(p.angle - 1)*cSize*0.6;
                         ctx.beginPath(); ctx.arc(seg.x+camX+oX, seg.y+camY+oY, cSize*0.25, 0, Math.PI*2); ctx.fill();
                         ctx.beginPath(); ctx.arc(seg.x+camX+oX2, seg.y+camY+oY2, cSize*0.25, 0, Math.PI*2); ctx.fill();
-                        
-                        ctx.fillStyle = '#8b0000'; 
-                        let lX = Math.cos(p.angle)*2, lY = Math.sin(p.angle)*2;
-                        ctx.beginPath(); ctx.arc(seg.x+camX+oX+lX, seg.y+camY+oY+lY, cSize*0.12, 0, Math.PI*2); ctx.fill();
-                        ctx.beginPath(); ctx.arc(seg.x+camX+oX2+lX, seg.y+camY+oY2+lY, cSize*0.12, 0, Math.PI*2); ctx.fill();
-
-                        if (p.score >= 1000) {
-                            ctx.save(); ctx.translate(seg.x + camX, seg.y + camY); ctx.rotate(p.angle);
-                            ctx.fillStyle = '#d4af37'; 
-                            ctx.beginPath(); ctx.moveTo(0, cSize*0.7); ctx.lineTo(-cSize*1.2, cSize*1.8); ctx.lineTo(-cSize*0.6, cSize*0.8); ctx.fill();
-                            ctx.beginPath(); ctx.moveTo(0, -cSize*0.7); ctx.lineTo(-cSize*1.2, -cSize*1.8); ctx.lineTo(-cSize*0.6, -cSize*0.8); ctx.fill();
-                            ctx.restore();
-                        }
                     }
                 }
-                ctx.fillStyle = 'rgba(244, 235, 216, 0.9)'; ctx.font = 'bold 13px Arial'; ctx.textAlign = 'center';
-                ctx.fillText(p.name, p.segments[0].x+camX, p.segments[0].y+camY - baseSize - 15);
+                ctx.fillStyle = 'rgba(244, 235, 216, 0.9)'; ctx.font = 'bold 11px Arial'; ctx.textAlign = 'center';
+                ctx.fillText(p.name, p.segments[0].x+camX, p.segments[0].y+camY - baseSize - 10);
             });
             document.getElementById('scores-list').innerHTML = boardHTML;
 
             if (isTouchingJoystick) {
                 ctx.fillStyle = 'rgba(212, 175, 55, 0.1)'; ctx.strokeStyle = 'rgba(212, 175, 55, 0.4)'; ctx.lineWidth = 2;
-                ctx.beginPath(); ctx.arc(touchStart.x, touchStart.y, 60, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+                ctx.beginPath(); ctx.arc(touchStart.x, touchStart.y, 50, 0, Math.PI*2); ctx.fill(); ctx.stroke();
                 ctx.fillStyle = 'rgba(212, 175, 55, 0.7)'; ctx.beginPath();
                 let a = Math.atan2(touchCurrent.y-touchStart.y, touchCurrent.x-touchStart.x);
-                let d = Math.min(60, Math.hypot(touchCurrent.x-touchStart.x, touchCurrent.y-touchStart.y));
-                ctx.arc(touchStart.x+Math.cos(a)*d, touchStart.y+Math.sin(a)*d, 25, 0, Math.PI*2); ctx.fill();
+                let d = Math.min(50, Math.hypot(touchCurrent.x-touchStart.x, touchCurrent.y-touchStart.y));
+                ctx.arc(touchStart.x+Math.cos(a)*d, touchStart.y+Math.sin(a)*d, 20, 0, Math.PI*2); ctx.fill();
             }
         }
 
